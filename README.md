@@ -14,12 +14,19 @@ Mac is a bit tricky, as Docker runs within the user space and only on login.
 You will need at least 2 acconuts. 1 admin account and 1+ child account. 
 
 #### Admin account
-1. Install [docker](https://www.docker.com).
-1. Configure admin account to [login automatically](https://support.apple.com/en-us/HT201476).
-1. Configure admin account to lock the screen when logged in automatically.
-```
-sudo defaults write /Library/Preferences/com.apple.loginwindow autoLoginUserScreenLocked -bool true
-```
+1. Install [VirtualBox](https://www.virtualbox.org).
+1. Install [docker-machine](https://docs.docker.com/machine/install-machine/).
+1. Create VirtualBox docker host.
+    ```
+    docker-machine create --driver virtualbox docker
+    ```
+1. Copy [docker-at-boot.plist](osx/docker-at-boot.plist) to `~/Library/LaunchAgents/`
+1. Change the username from `user` to your admin username in `~/Library/LaunchAgents/docker-at-boot.plist`
+1. Make logs directory /Users/`user`/logs
+1. Configure launchd to run docker host at boot.
+    ```
+    launchctl load -wF ~/Library/LaunchAgents/docker-at-boot.plist
+    ```
 
 #### Child account
 Child will have to login manually into their own account.  
