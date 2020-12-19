@@ -20,11 +20,25 @@ You will need at least 2 acconuts. 1 admin account and 1+ child account.
     ```
     docker-machine create --driver virtualbox docker
     ```
-1. Copy [docker-at-boot.plist](osx/docker-at-boot.plist) to `/Library/LaunchDaemons/`
-1. Change the username from `user` to your admin username in `/Library/LaunchDaemons/docker-at-boot.plist`
-1. Make logs directory /Users/`user`/logs
+1. Copy [docker-at-boot.plist](osx/docker-at-boot.plist) to `/Library/LaunchDaemons/`.
+1. Change the username from `user` to your admin username in `/Library/LaunchDaemons/docker-at-boot.plist`.
+1. Make logs directory `/Users/user/logs`.
 1. Configure launchd to run docker host at boot.
-1. Reboot
+1. Reboot.
+1. Install docker.
+1. Set docker env to point to VirtualBox docker host.
+    ```
+    eval "$(docker-machine env docker)"
+    ```
+1. Clone this repo.
+    ```
+    git clone https://github.com/maxfortun/docker-squid.git
+    ```
+1. Review or modify [whitelisted domains](mnt/etc/squid/conf.d/kids/whitelist). 
+1. Run squid.
+    ```
+    bin/run.sh
+    ```
 
 #### Child account
 Child will have to login manually into their own account.  
