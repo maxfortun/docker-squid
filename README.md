@@ -20,7 +20,12 @@ You will need at least 2 acconuts. 1 admin account and 1+ child account.
     ```
     docker-machine create --driver virtualbox docker
     ```
-1. Configure docker host to start at boot.
+1. Copy [docker-at-boot.plist](osx/docker-at-boot.plist) to `~/Library/LaunchAgents/`
+1. Change the username from `user` to your admin username in `~/Library/LaunchAgents/docker-at-boot.plist`
+1. Configure launchd to run docker host at boot.
+    ```
+    launchctl load -wF ~/Library/LaunchAgents/docker-at-boot.plist
+    ```
 
 #### Child account
 Child will have to login manually into their own account.  
