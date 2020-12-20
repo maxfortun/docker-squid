@@ -1,6 +1,7 @@
 FROM alpine:latest
 
-RUN apk --update add squid
+RUN apk --update add squid inotify-tools \
+	&& rm -rf /var/cache/apk/*
 
 COPY bin /usr/local/bin
 
