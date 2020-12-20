@@ -2,7 +2,11 @@
 
 pushd "$(dirname $0)"
 SWD=$(pwd)
+PATH="$PATH:$SWD"
 BWD=$(dirname "$SWD")
+
+# Let's make sure jq is available
+! which jq >/dev/null && curl -o $SWD/jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-osx-amd64 && chmod a+x $SWD/jq
 
 . $SWD/setenv.sh
 
