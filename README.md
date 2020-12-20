@@ -49,6 +49,10 @@ You will need at least 2 acconuts. 1 admin account and 1+ child account.
         networksetup -set${proto}proxystate Wi-Fi on
     done
     ```
+Note: Once this setup is running you may want to modify the whitelist. For the changes to take affect you will need to run as admin:
+```
+docker exec squid squid -k reconfigure
+```
 
 #### Child account
 Child will have to login manually into their own account.  
