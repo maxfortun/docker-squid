@@ -30,9 +30,11 @@ You will need at least 2 acconuts. 1 admin account and 1+ child account.
     ```
     eval "$(docker-machine env docker)"
     ```
-1. Clone this repo.
+1. Build an image.
     ```
     git clone https://github.com/maxfortun/docker-squid.git
+	cd docker-squid
+	bin/build.sh
     ```
 1. Review or modify [whitelisted domains](mnt/etc/squid/conf.d/kids/whitelist). 
 1. Run squid.
