@@ -45,7 +45,7 @@ You will need at least 2 acconuts. 1 admin account and 1+ child account.
 1. Set proxies
     ```
     for proto in ftp web secureweb gopher; do 
-        networksetup -set${proto}proxy Wi-Fi localhost 43218
+        networksetup -set${proto}proxy Wi-Fi localhost 43128
         networksetup -set${proto}proxystate Wi-Fi on
     done
     ```
