@@ -10,7 +10,7 @@ RUN_IMAGE="$REPO/$NAME"
 
 DOCKER_RUN_ARGS=( -e container=docker )
 DOCKER_RUN_ARGS+=( -v /etc/resolv.conf:/etc/resolv.conf:ro )
-DOCKER_RUN_ARGS+=( --add-host host.docker.internal:host-gateway )
+#DOCKER_RUN_ARGS+=( --add-host host.docker.internal:host-gateway )
 
 # Publish exposed ports
 imageId=$(docker images --format="{{.Repository}} {{.ID}}"|grep "^$RUN_IMAGE "|awk '{ print $2 }')
