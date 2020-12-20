@@ -18,7 +18,7 @@ You will need at least 2 acconuts. 1 admin account and 1+ child account.
 1. Install [docker-machine](https://docs.docker.com/machine/install-machine/).
 1. Create VirtualBox docker host.
     ```
-    docker-machine create --driver virtualbox docker
+    docker-machine create --driver virtualbox --engine-env NO_PROXY='*' docker
     docker-machine stop docker || docker-machine kill docker
     VBoxManage modifyvm "docker" --natpf1 "squid,tcp,,43128,,43128"
     ```
