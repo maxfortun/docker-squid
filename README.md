@@ -25,16 +25,14 @@ You will need at least 2 acconuts. 1 admin account and 1+ child account.
 1. Make logs directory `/Users/user/logs`.
 1. Configure launchd to run docker host at boot.
 1. Reboot.
-1. Install docker.
+1. Install [docker](https://www.docker.com).
 1. Set docker env to point to VirtualBox docker host.
     ```
     eval "$(docker-machine env docker)"
     ```
-1. Build an image.
+1. Clone this repo.
     ```
     git clone https://github.com/maxfortun/docker-squid.git
-	cd docker-squid
-	bin/build.sh
     ```
 1. Review or modify [whitelisted domains](mnt/etc/squid/conf.d/kids/whitelist). 
 1. Run squid.
