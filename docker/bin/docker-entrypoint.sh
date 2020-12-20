@@ -2,5 +2,8 @@
 
 SWD=$(dirname $0)
 
-chown -R squid:squid /var/cache/squid
-su squid -c 'squid -zN && squid -N'
+chmod o+w /dev/stdout
+chmod o+rwx /var/cache/squid
+
+squid -zN
+squid -N

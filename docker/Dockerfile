@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk --update add squid 
+RUN apk --update add squid
 
 COPY bin /usr/local/bin
 
