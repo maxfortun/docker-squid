@@ -19,6 +19,8 @@ You will need at least 2 acconuts. 1 admin account and 1+ child account.
 1. Create VirtualBox docker host.
     ```
     docker-machine create --driver virtualbox docker
+    docker-machine stop docker
+    VBoxManage modifyvm "docker" --natpf1 "squid,tcp,,3128,,43128"
     ```
 1. Copy [docker-at-boot.plist](osx/docker-at-boot.plist) to `/Library/LaunchDaemons/`.
 1. Change the username from `user` to your admin username in `/Library/LaunchDaemons/docker-at-boot.plist`.
