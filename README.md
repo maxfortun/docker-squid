@@ -41,6 +41,13 @@ You will need at least 2 acconuts. 1 admin account and 1+ child account.
     ```
     bin/run.sh
     ```
+1. Set proxies
+    ```
+    for proto in ftp web secureweb streaming gopher; do 
+        networksetup -set${proto}proxy Wi-Fi localhost 43218
+        networksetup -set${proto}proxystate Wi-Fi on
+    done
+    ```
 
 #### Child account
 Child will have to login manually into their own account.  
