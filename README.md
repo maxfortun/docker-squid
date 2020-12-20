@@ -28,6 +28,7 @@ You will need at least 2 acconuts. 1 admin account and 1+ child account.
 1. Configure launchd to run docker host at boot.
 1. Reboot.
 1. Install [docker](https://www.docker.com).
+1. Configure docker proxies to exclude `*`. Either via GUI or by editin `/Users/user/Library/Group Containers/group.com.docker/http_proxy.json`
 1. Set docker env to point to VirtualBox docker host.
     ```
     eval "$(docker-machine env docker)"
