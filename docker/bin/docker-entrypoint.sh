@@ -2,7 +2,6 @@
 
 SWD=$(dirname $0)
 
-chmod o+w /dev/stdout 
 chmod o+rwx /var/cache/squid
 
 mutex=/var/cache/squid/reload_mutex
@@ -17,6 +16,6 @@ done &
 watcher=$!
 
 squid -zN
-squid -N
+squid -N -d 8
 
 kill $watcher
