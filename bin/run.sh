@@ -10,14 +10,14 @@ BWD=$(dirname "$SWD")
 
 . $SWD/setenv.sh
 
-RUN_IMAGE="$REPO/$NAME"
+RUN_IMAGE="$REPO/$NAME:$VERSION"
 
 DOCKER_RUN_ARGS=( -e container=docker )
 DOCKER_RUN_ARGS+=( -v /etc/resolv.conf:/etc/resolv.conf:ro )
 #DOCKER_RUN_ARGS+=( --add-host host.docker.internal:host-gateway )
 
 # Publish exposed ports
-imageId=$(docker images --format="{{.Repository}} {{.ID}}"|grep "^$RUN_IMAGE "|awk '{ print $2 }')
+imageId=$(docker images --format="{{.Repository}}:{{.Tag}} {{.ID}}"|grep "^$RUN_IMAGE "|awk '{ print $2 }')
 while read port; do
 	proto=${port##*/}
 	portOnly=${port%/*}
@@ -34,10 +34,12 @@ DOCKER_RUN_ARGS+=( -v $GUEST_MNT/etc/squid/squid.conf:/etc/squid/squid.conf )
 DOCKER_RUN_ARGS+=( -v $GUEST_MNT/etc/squid/conf.d:/etc/squid/conf.d )
 DOCKER_RUN_ARGS+=( -v $GUEST_MNT/var/cache/squid:/var/cache/squid )
 
+DOCKER_RUN_ARGS+=( -e DEBUG=* )
+
 docker update --restart=no $NAME || true
 docker stop $NAME || true
 docker system prune -f
-docker run -d -it --restart=always "${DOCKER_RUN_ARGS[@]}" --name $NAME $RUN_IMAGE:$VERSION "$@"
+docker run -d -it --restart=always "${DOCKER_RUN_ARGS[@]}" --name $NAME $RUN_IMAGE "$@"
 
 echo "To attach to container run 'docker attach $NAME'. To detach CTRL-P CTRL-Q."
 [ "$DOCKER_ATTACH" != "true" ] || docker attach $NAME
