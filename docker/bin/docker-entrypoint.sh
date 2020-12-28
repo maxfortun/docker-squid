@@ -16,6 +16,6 @@ done &
 watcher=$!
 
 squid -zN
-squid -N -d 8
+squid -N -X -d 8
 
 kill $watcher
